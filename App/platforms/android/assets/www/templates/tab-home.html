@@ -8,6 +8,17 @@
                 </button>
             </div>
         </div>
+        <div class="card">
+            <div class="item">
+                <button class="button button-block button-positive" ng-click="vm.setIP()">
+                  
+                    Set IP
+                </button>
+            </div>
+            <div class="item item-divider">
+               IP:  {{vm.ip}}
+            </div>
+        </div>
 
         <div class="card">
             <div class="item item-divider">
@@ -15,6 +26,14 @@
             </div>
             <div class="item item-text-wrap">
                 {{vm.scanResults}}
+            </div>
+        </div>
+         <div class="card">
+            <div class="item item-divider">
+                Registration Results
+            </div>
+            <div class="item item-text-wrap">
+                {{vm.serverresponse}}
             </div>
         </div>
     </ion-content>

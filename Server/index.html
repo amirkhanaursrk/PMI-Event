@@ -1,0 +1,77 @@
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style>
+  @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
+  body {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.4em;
+    color: #333;
+    background: #eee;
+  }
+  
+  .wrapper {
+    width: 80%;
+    padding: 4%;
+    margin: 20px auto;
+    background: #fff;
+  }
+  
+  h1 {
+    margin: 0.5em 0 1em 0;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #096AA3;
+  }
+  
+  h2,
+  h3 {
+    font-weight: bold;
+  }
+  
+  p {
+    margin-bottom: 1em;
+  }
+</style>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://192.168.1.2:80/');
+  socket.on('registered', function (data) {
+    JSON.stringify(data);
+    registered(data);
+  });
+  socket.on('nonregistered', function (data) {
+    JSON.stringify(data);
+    nonregistered(data);
+  });
+  
+  function registered(input){
+  /*   var list = document.getElementById('demo');
+      var firstname = input;
+    document.getElementById('boldStuff2').innerHTML = firstname;
+    var entry = document.createElement('li');
+    entry.appendChild(document.createTextNode(firstname));
+    list.appendChild(entry); */
+console.log(input);
+    var div = document.createElement('div');
+    document.body.appendChild(div);
+    div.className = 'wrapper';
+    div.innerHTML = '<h2 class="pageTitle"> ' + input.firstname +" "+ input.lastname + " is registered" + '</h2>';
+  }
+  function nonregistered(input){
+    var li = document.createElement('li');
+    document.getElementById("demo").appendChild(li);
+    li.innerText = input;
+  }
+</script>
+
+<body>
+  <div class="wrapper">
+    <h1 class="pageTitle"> NCPMI </br>
+    </h1>
+    <p>Not Registered:</p>
+    <ol id="demo"></ol>
+  </div>
+
+</body>
